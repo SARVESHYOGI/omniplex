@@ -27,6 +27,8 @@ import Plugin from "../../../public/svgs/sidebar/Plugin_Active.svg";
 import PluginInactive from "../../../public/svgs/sidebar/Plugin_Inactive.svg";
 import User from "../../../public/svgs/sidebar/User.svg";
 import Collapse from "../../../public/svgs/sidebar/Collapse.svg";
+import plan from "../../../public/svgs/sidebar/plan.svg";
+import Plan from "../Plan/Plan";
 
 const Sidebar = () => {
   const router = useRouter();
@@ -194,6 +196,20 @@ const Sidebar = () => {
                       onClick={() => setSelected("plugins")}
                     />
                   )}
+                  {selected === "plan" ? (
+                    <Image
+                      src={plan}
+                      alt="plan"
+                      className={styles.iconActive}
+                    />
+                  ) : (
+                    <Image
+                      src={plan}
+                      alt="plan"
+                      className={`${styles.icon} text-blue-300`}
+                      onClick={() => setSelected("plan")}
+                    />
+                  )}
                 </div>
                 <div>
                   <Image
@@ -223,6 +239,10 @@ const Sidebar = () => {
                 <Settings />
               ) : selected === "plugins" ? (
                 <Plugins />
+              ) : selected === "plan" ? (
+                <>
+                  <Plan close={closeSidebar} />
+                </>
               ) : (
                 <Profile close={closeSidebar} />
               )}

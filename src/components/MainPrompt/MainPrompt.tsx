@@ -36,7 +36,7 @@ const MainPrompt = () => {
 
   const authState = useSelector(selectAuthState);
   const userDetails = useSelector(selectUserDetailsState);
-  const userId = userDetails.uid;
+  const userId = userDetails?.uid;
 
   const [text, setText] = useState("");
   const [width, setWidth] = useState(0);

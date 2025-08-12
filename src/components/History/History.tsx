@@ -45,12 +45,12 @@ const History = () => {
 
   useEffect(() => {
     fetchChatHistory();
-  }, [isAuthenticated, userDetails.uid]);
+  }, [isAuthenticated, userDetails?.uid]);
 
   const fetchChatHistory = async () => {
-    if (isAuthenticated && userDetails.uid) {
+    if (isAuthenticated && userDetails?.uid) {
       setLoading(true);
-      const historyRef = collection(db, "users", userDetails.uid, "history");
+      const historyRef = collection(db, "users", userDetails?.uid, "history");
       const q = query(historyRef, orderBy("createdAt", "desc"));
       const querySnapshot = await getDocs(q);
       const history = querySnapshot.docs.map((doc) => ({
@@ -66,9 +66,9 @@ const History = () => {
   };
 
   const handleDelete = async (threadId: string) => {
-    if (isAuthenticated && userDetails.uid) {
+    if (isAuthenticated && userDetails?.uid) {
       setDeleting(true);
-      await deleteDoc(doc(db, "users", userDetails.uid, "history", threadId));
+      await deleteDoc(doc(db, "users", userDetails?.uid, "history", threadId));
       fetchChatHistory();
       setDeleting(false);
     }

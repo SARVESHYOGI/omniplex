@@ -15,7 +15,7 @@ const useChatFork = (threadId: string) => {
     selectChatThread(state, threadId)
   );
   const userDetails = useSelector(selectUserDetailsState);
-  const userId = userDetails.uid;
+  const userId = userDetails?.uid;
 
   const handleFork = useCallback(async () => {
     if (!chatThread) {

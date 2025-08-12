@@ -33,12 +33,12 @@ const Library = () => {
 
   useEffect(() => {
     fetchLibraryData();
-  }, [isAuthenticated, userDetails.uid]);
+  }, [isAuthenticated, userDetails?.uid]);
 
   const fetchLibraryData = async () => {
-    if (isAuthenticated && userDetails.uid) {
+    if (isAuthenticated && userDetails?.uid) {
       setLoading(true);
-      const libraryRef = collection(db, "users", userDetails.uid, "library");
+      const libraryRef = collection(db, "users", userDetails?.uid, "library");
       const q = query(libraryRef, orderBy("date", "desc"));
       const querySnapshot = await getDocs(q);
       const library = querySnapshot.docs.map((doc) => ({
@@ -54,9 +54,9 @@ const Library = () => {
   };
 
   const handleDelete = async (itemId: string) => {
-    if (isAuthenticated && userDetails.uid) {
+    if (isAuthenticated && userDetails?.uid) {
       setDeleting(true);
-      await deleteDoc(doc(db, "users", userDetails.uid, "library", itemId));
+      await deleteDoc(doc(db, "users", userDetails?.uid, "library", itemId));
       fetchLibraryData();
       setDeleting(false);
     }

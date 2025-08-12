@@ -36,7 +36,7 @@ const useChatAnswer = ({
   const dispatch = useDispatch();
   const userDetails = useSelector(selectUserDetailsState);
   const ai = useSelector(selectAI);
-  const userId = userDetails.uid;
+  const userId = userDetails?.uid;
 
   const [controller, setController] = useState<AbortController | null>(null);
 
